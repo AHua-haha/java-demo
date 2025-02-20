@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.Resource;
+
 /**
  * @Author liuzongqiang
  * @Date 2019/7/27 0027 19:05
@@ -18,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 public final class RedisUtil {
 
-    @Autowired
+    @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
     public Set<String> keys(String keys) {

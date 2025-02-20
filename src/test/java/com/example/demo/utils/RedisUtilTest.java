@@ -19,8 +19,15 @@ public class RedisUtilTest {
 
     @Test
     void testExpire() {
-        redisUtil.set("exp", "aaabbb", 15);
-        Object res = redisUtil.get("util");
+        redisUtil.set("exp", "aaabbb", 30);
+        Object res = redisUtil.get("exp");
         System.out.println(res);
+    }
+    @Test
+    void testDelete() {
+        System.out.println(redisUtil.get("exp"));
+        System.out.println(redisUtil.get("util"));
+
+        redisUtil.del("exp", "util");
     }
 }
