@@ -6,8 +6,10 @@ spring:
   application:
     name: demo
   datasource:
-    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:classpath:shardingsphere.yaml
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo_db
+    username: root
+    password: root
   data:
     redis:
       host: localhost
