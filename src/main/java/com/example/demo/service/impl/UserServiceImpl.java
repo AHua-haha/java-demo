@@ -28,4 +28,11 @@ public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implement
         }
         return res;
     }
+
+    @Override
+    public void updateUser(UserDO user) {
+        baseMapper.updateById(user);
+        String key = "user" + ":" + user.getId();
+        redisUtil.del(key);
+    }
 }

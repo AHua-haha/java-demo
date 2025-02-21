@@ -1,7 +1,5 @@
 package com.example.demo.dao.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.AllArgsConstructor;

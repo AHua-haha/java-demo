@@ -5,5 +5,5 @@ import com.example.demo.dao.entity.UserDO;
 
 public interface UserService extends IService<UserDO> {
     UserDO getUser(long id);
-    UserDO updateUser();
+    void updateUser(UserDO user);
 }
