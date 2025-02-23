@@ -41,4 +41,14 @@ public class UserServiceImplTest {
                 .set(UserDO::getName, "update name");
         userServiceImpl.update(wrapper);
     }
+    @Test
+    void insertData() {
+        for (int i = 0; i < 1e5; i++) {
+            UserDO user = UserDO.builder().id(i)
+                                        .name("hello_" + i)
+                                        .mail("ahua" + i + "@zju.edu.cn")
+                                        .build();
+            userServiceImpl.save(user);
+        }
+    }
 }
