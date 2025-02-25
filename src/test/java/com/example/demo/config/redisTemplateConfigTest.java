@@ -20,4 +20,11 @@ public class redisTemplateConfigTest {
         Object res = redisTemplate.opsForValue().get("testkey");;
         System.out.println(res);
     }
+    @Test
+    void testCluster() {
+        UserDO userDO = new UserDO();
+        redisTemplate.opsForValue().set("testkey", userDO);
+        Object res = redisTemplate.opsForValue().get("testkey");;
+        System.out.println(res);
+    }
 }

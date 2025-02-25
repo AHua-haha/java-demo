@@ -16,7 +16,7 @@ public class UserBloomFilter {
     public RBloomFilter<Long> userBF() {
         RBloomFilter<Long> bloomFilter = redissonClient.getBloomFilter("t_user");
 
-        bloomFilter.tryInit(1000, 0.01);
+        bloomFilter.tryInit(10000, 0.01);
 
         return bloomFilter;
     }

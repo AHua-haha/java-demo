@@ -18,6 +18,11 @@ public class UserBloomFilterTest {
     private RedissonClient redissonClient;
 
     @Test
+    void deleteBloomFilter() {
+        RBloomFilter<Object> bloomFilter = redissonClient.getBloomFilter("t_user");;
+        bloomFilter.delete();
+    }
+    @Test
     void testUserBF() {
         bloomFilter.add(22l);
         boolean res = bloomFilter.contains(22l);

@@ -1,0 +1,12 @@
+*2
+$6
+SELECT
+$1
+0
+*3
+$3
+SET
+$7
+testkey
+$78
+{"@class":"com.example.demo.dao.entity.UserDO","id":0,"name":null,"mail":null}

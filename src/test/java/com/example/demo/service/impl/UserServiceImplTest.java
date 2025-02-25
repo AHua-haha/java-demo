@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import org.junit.jupiter.api.Test;
+import org.redisson.api.RBloomFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,6 +12,9 @@ import com.example.demo.dao.entity.UserDO;
 public class UserServiceImplTest {
     @Autowired
     private UserServiceImpl userServiceImpl;
+
+    @Autowired
+    private RBloomFilter<Long> bloomFilter;
 
     @Test
     void testSave() {
@@ -49,6 +53,12 @@ public class UserServiceImplTest {
                                         .mail("ahua" + i + "@zju.edu.cn")
                                         .build();
             userServiceImpl.save(user);
+        }
+    }
+    @Test
+    void addBF() {
+        for (long i = 0; i < 1e5; i++) {
+            bloomFilter.add(i);
         }
     }
 }
