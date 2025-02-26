@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 
-public interface UserService extends IService<UserDO> {
-    UserDO getUser(long id);
-    void updateUser(UserDO user);
+public interface UserService extends IService<UserDAO> {
+    UserDAO getUser(long id);
+    void updateUser(UserDAO user);
 }

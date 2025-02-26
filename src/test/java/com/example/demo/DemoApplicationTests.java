@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 import com.example.demo.dao.mapper.UserDOMapper;
 
 @SpringBootTest
@@ -21,9 +21,10 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
-		LambdaQueryWrapper<UserDO> query = new LambdaQueryWrapper<>();
-		query.eq(UserDO::getName, "test");
-		List<UserDO> res = userDOMapper.selectList(query);
+		LambdaQueryWrapper<UserDAO> query = new LambdaQueryWrapper<>();
+
+		query.eq(UserDAO::getName, "test");
+		List<UserDAO> res = userDOMapper.selectList(query);
 		res.forEach(System.out::println);
 	}
 

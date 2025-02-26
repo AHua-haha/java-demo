@@ -11,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("t_user")
-public class UserDO {
+@TableName("t_product_count")
+public class ProductCountDAO {
     private long id;
-    private String name;
-    private String mail;
+    private long count;
 }

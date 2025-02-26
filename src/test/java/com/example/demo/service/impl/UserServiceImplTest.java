@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 
 @SpringBootTest
 public class UserServiceImplTest {
@@ -18,7 +18,7 @@ public class UserServiceImplTest {
 
     @Test
     void testSave() {
-        UserDO user = UserDO.builder()
+        UserDAO user = UserDAO.builder()
                     .id(4445)
                     .name("hahaha bb")
                     .build();
@@ -26,29 +26,29 @@ public class UserServiceImplTest {
     }
     @Test
     void testUpdateWrapper() {
-        LambdaUpdateWrapper<UserDO> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.eq(UserDO::getMail, "2242.zju.edu.cn")
-                .set(UserDO::getName, "update name");
+        LambdaUpdateWrapper<UserDAO> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(UserDAO::getMail, "2242.zju.edu.cn")
+                .set(UserDAO::getName, "update name");
         userServiceImpl.update(wrapper);
     }
     @Test
     void testUpdate() {
-        UserDO user = UserDO.builder()
+        UserDAO user = UserDAO.builder()
                     .id(4445)
                     .name("hahaha bb")
                     .mail("2242.zju.edu.cn")
                     .build();
         userServiceImpl.updateById(user);
 
-        LambdaUpdateWrapper<UserDO> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.eq(UserDO::getMail, "2242.zju.edu.cn")
-                .set(UserDO::getName, "update name");
+        LambdaUpdateWrapper<UserDAO> wrapper = new LambdaUpdateWrapper<>();
+        wrapper.eq(UserDAO::getMail, "2242.zju.edu.cn")
+                .set(UserDAO::getName, "update name");
         userServiceImpl.update(wrapper);
     }
     @Test
     void insertData() {
         for (int i = 0; i < 1e5; i++) {
-            UserDO user = UserDO.builder().id(i)
+            UserDAO user = UserDAO.builder().id(i)
                                         .name("hello_" + i)
                                         .mail("ahua" + i + "@zju.edu.cn")
                                         .build();

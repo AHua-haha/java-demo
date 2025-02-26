@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.dao.entity.UserDAO;
+
 
 @SpringBootTest
 public class rocketMQTest {
@@ -54,7 +56,8 @@ public class rocketMQTest {
 
     @Test
     void testMQTemplate() {
-        rocketMQTemplate.convertAndSend("topic", "hello fuck you");
+        UserDAO userDO = UserDAO.builder().id(220000).name("fuck you").build();
+        rocketMQTemplate.convertAndSend("topic", userDO);
     }
 
 }

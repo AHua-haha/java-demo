@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 import com.example.demo.dao.mapper.UserDOMapper;
 import com.example.demo.service.UserService;
 import com.example.demo.utils.RedisUtil;
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDAO> implements UserService {
 
     @Autowired
     private RedisUtil redisUtil;
@@ -28,7 +28,7 @@ public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implement
     private RBloomFilter<Long> bloomFilter;
 
     @Override
-    public UserDO getUser(long id) {
+    public UserDAO getUser(long id) {
         if (!bloomFilter.contains(id)) {
             log.info("not exist");
             return null;
@@ -36,10 +36,10 @@ public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implement
 
         String key = "user" + ":" + id;
         System.out.println(key);
-        UserDO res = null;
+        UserDAO res = null;
         if (redisUtil.hasKey(key)) {
             log.info("redis");
-            res = (UserDO) redisUtil.get(key);
+            res = (UserDAO) redisUtil.get(key);
             return res;
         }
         log.info("database");
@@ -47,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implement
         lock.lock();
         try {
             if (redisUtil.hasKey(key)) {
-                return (UserDO) redisUtil.get(key);
+                return (UserDAO) redisUtil.get(key);
             }
             res = baseMapper.selectById(id);
             redisUtil.set(key, res);
@@ -58,7 +58,7 @@ public class UserServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implement
     }
 
     @Override
-    public void updateUser(UserDO user) {
+    public void updateUser(UserDAO user) {
         baseMapper.updateById(user);
         String key = "user" + ":" + user.getId();
         redisUtil.del(key);

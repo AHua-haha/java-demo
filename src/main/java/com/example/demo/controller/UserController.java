@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 import com.example.demo.service.UserService;
 
 @RestController
@@ -18,12 +18,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get/{id}")
-    public UserDO getUser(@PathVariable Integer id) {
+    public UserDAO getUser(@PathVariable Integer id) {
         return userService.getUser(id);
     }
 
     @PostMapping("/update/{id}")
-    public void updateUser(UserDO user) {
+    public void updateUser(UserDAO user) {
         userService.updateUser(user);
     }
 }

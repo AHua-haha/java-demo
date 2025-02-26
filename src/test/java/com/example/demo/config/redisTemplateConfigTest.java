@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.example.demo.dao.entity.UserDO;
+import com.example.demo.dao.entity.UserDAO;
 
 @SpringBootTest
 public class redisTemplateConfigTest {
@@ -15,14 +15,14 @@ public class redisTemplateConfigTest {
 
     @Test
     void testSimpleOps() {
-        UserDO userDO = new UserDO();
+        UserDAO userDO = new UserDAO();
         redisTemplate.opsForValue().set("testkey", 22);
         Object res = redisTemplate.opsForValue().get("testkey");;
         System.out.println(res);
     }
     @Test
     void testCluster() {
-        UserDO userDO = new UserDO();
+        UserDAO userDO = new UserDAO();
         redisTemplate.opsForValue().set("testkey", userDO);
         Object res = redisTemplate.opsForValue().get("testkey");;
         System.out.println(res);
