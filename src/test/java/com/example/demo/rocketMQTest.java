@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.demo.dao.entity.OrderDAO;
 import com.example.demo.dao.entity.UserDAO;
 
 
@@ -57,7 +58,16 @@ public class rocketMQTest {
     @Test
     void testMQTemplate() {
         UserDAO userDO = UserDAO.builder().id(220000).name("fuck you").build();
-        rocketMQTemplate.convertAndSend("topic", userDO);
+        rocketMQTemplate.convertAndSend("order", userDO);
+    }
+    @Test
+    void testOrderConsumer() {
+        OrderDAO order = OrderDAO.builder().id(34567)
+                    .user_id(344)
+                    .product_id(22)
+                    .count(40)
+                    .build();
+        rocketMQTemplate.convertAndSend("order", order);
     }
 
 }
