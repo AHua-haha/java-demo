@@ -1,6 +1,7 @@
 package com.example.demo.utils;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -504,7 +505,7 @@ public final class RedisUtil {
      * @param value 值
      * @return
      */
-    public boolean lSet(String key, List<Object> value) {
+    public boolean lSet(String key, Collection<Object> value) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
             return true;
