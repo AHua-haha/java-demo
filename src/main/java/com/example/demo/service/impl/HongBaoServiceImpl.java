@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class HongBaoServiceImpl implements HongBaoService {
 
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     @Autowired
     private HongBaoEventMapper hongBaoEventMapper;
@@ -84,6 +87,7 @@ public class HongBaoServiceImpl implements HongBaoService {
                     .price(BigDecimal.valueOf(hongBao.price / 100.0))
                     .build();
         redisTemplate.opsForList().leftPush(key + ":record", record);
+        rocketMQTemplate.convertAndSend("hbRecord", record);;
         log.info("get hong bao, id: "+ hongBao.id + " price: " + record.getPrice());
         return true;
     }
