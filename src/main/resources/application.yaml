@@ -1,6 +1,6 @@
 
 server:
-  port: 8080
+  port: 8090
 
 spring:
   application:
@@ -30,3 +30,16 @@ mybatis-plus:
   configuration:
       log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
       map-underscore-to-camel-case: false
+
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    accessToken: default_token
+    executor:
+      address:
+      appname: xxl-job-executor-sample
+      ip: 192.168.65.2
+      port: 9999
+      logpath: /home/ahua/workspace/java/demo/middle_ware/xxl-job/executorlog
+      logretentiondays: 30

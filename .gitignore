@@ -33,4 +33,7 @@ build/
 .vscode/
 
 **/*.out
-**/middle_ware/redis
+**/*log
+**/dump.rdb
+**/appendonlydir
+**/nodes.conf
